@@ -1,0 +1,87 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    
+    <template if:true={selectProduct}>
+        <lightning-card title="Products" icon-name="utility:list">
+            <div style="padding:10px">
+                <c-lightning-datatable-ext
+                    key-field="id"
+                    data={data}
+                    columns={columns}
+                    onrowaction={handleRowAction}
+                    max-row-selection="1"
+                    hide-table-header
+                    suppress-bottom-bar="true"
+                    onquantity={handleQuantity}
+                    column-widths-mode
+                    onrowselection={getSelectedRow}
+                    >
+                </c-lightning-datatable-ext>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-grid slds-size_10-of-12">
+                        <div class="slds-col  slds-p-right_medium slds-p-top_x-large">
+                            <lightning-button label="Check Out" title="Check Out" onclick={handleCheckOut} class="slds-m-left_x-small"></lightning-button>
+                        </div>
+                        <div class="slds-col slds-size_2-of-12 slds-p-top_x-large">
+                            <template if:true={total}>
+                                Total <lightning-formatted-number type="text" label="Total" disabled value={total} format-style="currency" currency-code="USD" currency-display-as="symbol"></lightning-formatted-number>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </lightning-card>
+    </template>
+    <template if:true={enterCreditCardInfo}>
+        <lightning-card title="Payment Information" icon-name="utility:payment_gateway">
+            <div style="padding:10px">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_10-of-12">
+                        <lightning-input data-name='name' type="text" label="Name On Card" placeholder="name on card..."></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_10-of-12">
+                        <lightning-input data-cardnumber='cardnumber' type="text" label="Card Number" placeholder="card number..."></lightning-input>
+                    </div>
+                    <div class="slds-col slds-grid slds-size_10-of-12">
+                        <div class="slds-col slds-p-left_none slds-p-right_medium">
+                            <lightning-input data-expiration='expiration' type="text" label="Expiration MM/YY" placeholder="expiration MM/YY..."></lightning-input>
+                        </div>
+                        <div class="slds-col slds-p-left_none">
+                            <lightning-input data-cvc='cvc' type="text" label="CVC" placeholder="cvc..."></lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-grid slds-size_10-of-12">
+                        <div class="slds-col slds-p-left_none slds-p-right_medium">
+                            <lightning-input data-country='country' type="text" label="Country" placeholder="country..."></lightning-input>
+                        </div>
+                        <div class="slds-col slds-p-left_none">
+                            <lightning-input data-zip='zip' type="text" label="Zip" placeholder="zip..."></lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-grid slds-size_10-of-12">
+                        <div class="slds-col slds-p-right_medium slds-p-top_large">
+                            <lightning-button label="Pay Now" title="Pay Now" onclick={handlePayNow} class="slds-m-left_x-small"></lightning-button>
+                        </div>
+                        <div class="slds-col slds-size_2-of-12 slds-p-right_medium slds-p-top_large">
+                            <template if:true={total}>
+                                Total <lightning-formatted-number type="text" label="Total" disabled value={total} format-style="currency" currency-code="USD" currency-display-as="symbol"></lightning-formatted-number>
+                            </template>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+          </lightning-card>
+    </template>
+    <template if:true={thankYou}>
+        <div class="slds-p-top_x-large">
+            <div class="slds-text-heading_large">
+                Thank You!
+            </div>
+            <div class="slds-text-body_regular slds-p-top_large">
+                Check your email for your order details. If you have any questions or inquiries on your order, email Ordersupport@slack.com.
+            </div>
+        </div>
+    </template>
+</template>

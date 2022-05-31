@@ -1,0 +1,23 @@
+.noMargin {
+    margin: 0 auto;
+}
+.noPadding {
+    padding: 0;
+}
+.verticalCenter {
+    vertical-align: center;
+}
+.alignRight {
+    text-align: right;
+}
+.lwcWrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.inputboxPadding {
+    padding-bottom: 50px;
+}
+.inputboxWidth {
+    min-width: 6px;
+    max-width: 6px;
+}
